@@ -5,7 +5,7 @@ const TransportDetails = () => {
     const{transportId}=useParams();
     return (
         <div>
-            <h1>This is Tranport Id:{transportId}</h1>
+            <h1>This is Tranport:{transportId}</h1>
         </div>
     );
 };
