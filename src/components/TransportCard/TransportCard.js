@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 
 const TransportCard = (props) => {
     const { name, image,id } = props.transport;
-    console.log(props.transport);
     let history=useHistory();
     const handleClick = ()=>{
         const url =`transport/${id}`;

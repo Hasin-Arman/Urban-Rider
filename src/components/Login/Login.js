@@ -30,7 +30,7 @@ const Login = () => {
 
 
   const handleBlur = (event) => {
-    console.log(event.target.name,event.target.value)
+    console.log(event.target.name, event.target.value)
     let isFieldValid = true;
     if (event.target.name === "email") {
       isFieldValid = /^\S+@\S+\.\S+$/.test(event.target.value);
@@ -48,13 +48,14 @@ const Login = () => {
   }
 
   const handleSubmit = (event) => {
-   
+
     if (user.email && (user.password === user.confirmPassword)) {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then((userCredential) => {
           // Signed in 
           var user = userCredential.user;
           console.log(user);
+          updateUserName(user.name);
         })
         .catch((error) => {
           var errorCode = error.code;
@@ -64,57 +65,70 @@ const Login = () => {
           newUser.error = errorMessage;
           // newUser[error] =errorMessage;
           setUser(newUser);
+        
           // ..
         });
-      }
-    event.preventDefault();
     }
-  
-    //     if(!newUser&&user.email&&user.password){
+    event.preventDefault();
+  }
 
-    //     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-    //     .then((userCredential) => {
-    //       // Signed in
-    //       var user = userCredential.user;
-    //       setLoggedInUser(user);
-    //       history.replace(from);
+  const updateUserName = name => {
+    var user = firebase.auth().currentUser;
 
-    //       // ...
-    //     })
-    //     .catch((error) => {
-    //       var errorCode = error.code;
-    //       var errorMessage = error.message;
+    user.updateProfile({
+      displayName: name
+    }).then(function () {
+      console.log('name updated successfully')
+    }).catch(function (error) {
+      console.log(error)
+    });
+  }
 
-    //     });
+  //     if(!newUser&&user.email&&user.password){
 
-    //     }
-    //   event.preventDefault();
-    // }
+  //     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       var user = userCredential.user;
+  //       setLoggedInUser(user);
+  //       history.replace(from);
 
-    return (
-      <div>
-        <Header></Header>
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       var errorCode = error.code;
+  //       var errorMessage = error.message;
 
-       
-        <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "50px" }}>
+  //     });
 
-          <input type="text" name="name" onBlur={handleBlur} placeholder="Enter your name" id="" />
-          <br />
-          <input type="text" name="email" onBlur={handleBlur} placeholder="Enter your e-mail" id="" required />
-          <br />
-          <input type="password" name="password" onBlur={handleBlur} placeholder="Enter your password" id="" required />
-          <br />
-          <input type="password" name="confirmPassword" onBlur={handleBlur} placeholder="Confirm your password" id="" required />
-          <br />
-          <br />
-          <input type="submit" value='Create an account' />
-          
-          <p style={{ color: 'red' }}>{user.error}</p>
-        </form>
+  //     }
+  //   event.preventDefault();
+  // }
 
-      </div>
-    );
-  
+  return (
+    <div>
+      <Header></Header>
+
+
+      <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "50px" }}>
+
+        <input type="text" name="name" onBlur={handleBlur} placeholder="Enter your name" id="" />
+        <br />
+        <input type="text" name="email" onBlur={handleBlur} placeholder="Enter your e-mail" id="" required />
+        <br />
+        <input type="password" name="password" onBlur={handleBlur} placeholder="Enter your password" id="" required />
+        <br />
+        <input type="password" name="confirmPassword" onBlur={handleBlur} placeholder="Confirm your password" id="" required />
+        <br />
+        <br />
+        <input type="submit" value='Create an account' />
+
+        <p style={{ color: 'red' }}>{user.error}</p>
+      </form>
+
+    </div>
+  );
+
 };
 
 export default Login;

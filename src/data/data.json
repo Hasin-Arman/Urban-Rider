@@ -1,17 +1,25 @@
 [{
     "name": "Bike",
     "image": "https://i.ibb.co/mvZBj38/Frame.png",
-    "id": 1
+    "id": 1,
+    "From":"Mirpur",
+    "To":"Dhanmondi"
   }, {
     "name": "Car",
     "image": "https://i.ibb.co/Gcw1qMp/Frame-2.png",
-    "id": 2
+    "id": 2,
+    "From":"Banani",
+    "To":"Gulshan"
   }, {
     "name": "Bus",
     "image": "https://i.ibb.co/7KVQVMd/Frame-1.png",
-    "id": 3
+    "id": 3,
+    "From":"Savar",
+    "To":"Motijhel"
   }, {
     "name": "Train",
     "image": "https://i.ibb.co/qntVFK8/Group.png",
-    "id": 4
+    "id": 4,
+    "From":"Farmgate",
+    "To":"Kolabagan"
   }]

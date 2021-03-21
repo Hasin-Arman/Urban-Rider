@@ -4,7 +4,7 @@ import banner from '../../images/Urban Riders.png'
 const Header = () => {
     let history =useHistory();
     const handleClick =()=>{
-        const url ='/login';
+        const url ='/signin';
         history.push(url);
     }
     return (

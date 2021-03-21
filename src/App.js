@@ -13,6 +13,7 @@ import { createContext, useState } from 'react';
 import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import SignIn from './components/SignIn/SignIn';
+import TransportDetailsResult from './components/TransportDetailsResult/TransportDetailsResult';
 // import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const userContext=createContext();
@@ -29,9 +30,13 @@ const[loggedInUser,setLoggedInUser]=useState({})
         <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/search">
+            <TransportDetailsResult/>
+          </Route>
           <Route path="/login">
             <Login/>
           </Route>
+         
           <Route path="/signin">
             <SignIn/>
           </Route>

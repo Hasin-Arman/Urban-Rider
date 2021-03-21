@@ -86,7 +86,7 @@ const SignIn = () => {
                     var user = userCredential.user;
                     setLoggedInUser(user);
                     history.replace(from);
-                    console.log(user);
+                    // console.log('sign in user info',user);
                     // ...
                 })
                 .catch((error) => {
