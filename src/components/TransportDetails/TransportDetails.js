@@ -5,10 +5,13 @@ import transportData from '../../data/data.json';
 import map from '../../images/Map.png';
 import { Link } from 'react-router-dom';
 import TransportDetailsResult from '../TransportDetailsResult/TransportDetailsResult';
+import Map from '../Map/Map';
 
 
 
 const TransportDetails = () => {
+    const[origin,setOrigin]=useState('');
+    const[destination,setDestination]=useState('');
     const[form,setForm]=useState(true);
     const{transportId}=useParams();
     const [transports,setTransports]=useState([]);
@@ -21,10 +24,6 @@ const TransportDetails = () => {
  
    console.log(result)
 
-    const handleBlur=(event)=>{
-        console.log(event.target.name,event.target.value)
-    }
-
     return (
         <div className="container">
             <Header></Header>
@@ -33,19 +32,19 @@ const TransportDetails = () => {
             <div className="col-md-5">
             
                 <h3>Pick Form</h3>
-                <input type="text" onBlur={handleBlur} name="pickUp" id=""/>
+                <input type="text" onBlur={e=>setOrigin(e.target.value)} name="pickUp" id=""/>
                 <br/>
                 <h3>Pick To</h3>
-                <input type="text" onBlur={handleBlur} name="pickTo" id=""/>
+                <input type="text"  onBlur={e=>setDestination(e.target.value)} name="pickTo" id=""/>
                 <br/>
                 <br/>
                 <button onClick={()=>setForm(false)} className="btn btn-info">search</button>
             
             </div>
             <div className="col-md-7">
-                <img style={{height:"550px"}} src={map} alt=""/>
+                <Map></Map>
             </div>
-        </div>):<TransportDetailsResult result={result}></TransportDetailsResult>}
+        </div>):<TransportDetailsResult origin={origin} destination={destination} result={result}></TransportDetailsResult>}
         </div>
     );
 };

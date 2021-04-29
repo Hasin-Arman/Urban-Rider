@@ -55,6 +55,7 @@ const Login = () => {
           // Signed in 
           var user = userCredential.user;
           console.log(user);
+          setSignedInUser(user);
           updateUserName(user.name);
         })
         .catch((error) => {

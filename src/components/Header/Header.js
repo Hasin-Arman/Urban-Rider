@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { userContext } from '../../App';
 import banner from '../../images/Urban Riders.png'
-const Header = () => {
+const Header = (props) => {
+  const[loggedInUser,setLoggedInUser]= useContext(userContext);
+  console.log(loggedInUser);
     let history =useHistory();
     const handleClick =()=>{
         const url ='/signin';
@@ -27,9 +30,9 @@ const Header = () => {
                         <li className="nav-item">
                         <Link style={{color:"black",marginRight:"20px"}} to="/home">Contact</Link>
                         </li>
-                        <li className="nav-item">
+                      { loggedInUser.email ?`${loggedInUser.email}`: <li className="nav-item">
                             <button onClick={handleClick} style={{height:"35px",margin:"5px"}} className="btn btn-info">Login</button>
-                        </li>
+                        </li>}
                     </ul>
                 </div>
             </div>
